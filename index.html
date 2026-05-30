@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adam's Media Hub</title>
+<title>PotterFlix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -115,7 +115,7 @@
     text-transform: uppercase;
   }
 
-  /* Featured card */
+  /* Main cards */
   .card {
     display: flex;
     align-items: center;
@@ -150,20 +150,14 @@
     border-color: rgba(201,169,110,0.22);
   }
   .card.gold::before { background: var(--glow-gold); }
-  .card.gold:hover {
-    border-color: rgba(201,169,110,0.42);
-    box-shadow: 0 12px 48px rgba(201,169,110,0.14);
-  }
+  .card.gold:hover { border-color: rgba(201,169,110,0.42); box-shadow: 0 12px 48px rgba(201,169,110,0.14); }
 
   .card.blue {
     background: linear-gradient(135deg, rgba(92,158,224,0.08), rgba(92,158,224,0.02));
     border-color: rgba(92,158,224,0.18);
   }
   .card.blue::before { background: var(--glow-blue); }
-  .card.blue:hover {
-    border-color: rgba(92,158,224,0.38);
-    box-shadow: 0 12px 48px rgba(92,158,224,0.12);
-  }
+  .card.blue:hover { border-color: rgba(92,158,224,0.38); box-shadow: 0 12px 48px rgba(92,158,224,0.12); }
 
   .card-icon {
     width: 52px;
@@ -177,55 +171,143 @@
     transition: transform 0.2s ease;
   }
 
-  .card.gold .card-icon {
-    background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
-    border: 1px solid rgba(201,169,110,0.2);
-  }
-
-  .card.blue .card-icon {
-    background: linear-gradient(135deg, rgba(92,158,224,0.18), rgba(92,158,224,0.04));
-    border: 1px solid rgba(92,158,224,0.18);
-  }
-
+  .card.gold .card-icon { background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05)); border: 1px solid rgba(201,169,110,0.2); }
+  .card.blue .card-icon { background: linear-gradient(135deg, rgba(92,158,224,0.18), rgba(92,158,224,0.04)); border: 1px solid rgba(92,158,224,0.18); }
   .card:hover .card-icon { transform: scale(1.08); }
 
   .card-body { flex: 1; min-width: 0; }
 
-  .card-title {
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 0.01em;
-  }
-
+  .card-title { font-size: 1rem; font-weight: 800; letter-spacing: 0.01em; }
   .card.gold .card-title { color: var(--accent-gold); }
   .card.blue .card-title { color: var(--accent-blue); }
 
-  .card-desc {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    margin-top: 0.2rem;
-  }
-
+  .card-desc { font-family: 'DM Mono', monospace; font-size: 0.7rem; margin-top: 0.2rem; }
   .card.gold .card-desc { color: rgba(201,169,110,0.55); }
   .card.blue .card-desc { color: rgba(92,158,224,0.55); }
 
-  .card-arrow {
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.4;
-  }
-
+  .card-arrow { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s ease, opacity 0.2s ease; opacity: 0.4; }
   .card.gold .card-arrow { color: var(--accent-gold); }
   .card.blue .card-arrow { color: var(--accent-blue); }
-
-  .card:hover .card-arrow {
-    transform: translateX(4px);
-    opacity: 1;
-  }
+  .card:hover .card-arrow { transform: translateX(4px); opacity: 1; }
 
   .card:nth-child(1) { animation-delay: 0.1s; }
   .card:nth-child(2) { animation-delay: 0.2s; }
+
+  /* ── Divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.8rem 0 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── App cards ── */
+  .app-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.2rem 1.4rem;
+    animation: fadeUp 0.6s ease both;
+    transition: border-color 0.2s ease;
+  }
+
+  .app-card:hover { border-color: var(--border-hover); }
+
+  .app-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .app-card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .app-card.movies .app-card-icon { background: linear-gradient(135deg, rgba(224,92,92,0.2), rgba(224,92,92,0.05)); border: 1px solid rgba(224,92,92,0.2); }
+  .app-card.comics .app-card-icon { background: linear-gradient(135deg, rgba(92,158,224,0.2), rgba(92,158,224,0.05)); border: 1px solid rgba(92,158,224,0.2); }
+  .app-card.music  .app-card-icon { background: linear-gradient(135deg, rgba(92,224,160,0.2), rgba(92,224,160,0.05)); border: 1px solid rgba(92,224,160,0.2); }
+
+  .app-card-info {}
+  .app-card-name { font-size: 0.95rem; font-weight: 800; }
+  .app-card.movies .app-card-name { color: #e05c5c; }
+  .app-card.comics .app-card-name { color: var(--accent-blue); }
+  .app-card.music  .app-card-name  { color: #5ce0a0; }
+
+  .app-card-purpose {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  .store-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .store-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.18s ease;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface2);
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  .store-btn:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .store-btn svg { flex-shrink: 0; }
+
+  .app-card:nth-child(1) { animation-delay: 0.35s; }
+  .app-card:nth-child(2) { animation-delay: 0.45s; }
+  .app-card:nth-child(3) { animation-delay: 0.55s; }
 
   footer {
     text-align: center;
@@ -234,7 +316,7 @@
     font-size: 0.62rem;
     color: var(--muted);
     letter-spacing: 0.12em;
-    animation: fadeUp 0.8s 0.4s ease both;
+    animation: fadeUp 0.8s 0.6s ease both;
   }
 
   @keyframes fadeDown {
@@ -276,6 +358,78 @@
     </div>
     <span class="card-arrow">→</span>
   </a>
+
+  <!-- Apps Section -->
+  <div class="divider">
+    <span class="divider-label">📲 Download the Apps</span>
+  </div>
+
+  <div class="app-grid">
+
+    <!-- Plex -->
+    <div class="app-card movies">
+      <div class="app-card-header">
+        <div class="app-card-icon">🎥</div>
+        <div class="app-card-info">
+          <div class="app-card-name">Plex</div>
+          <div class="app-card-purpose">Watch movies & TV shows</div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/plex-watch-live-tv-and-movies/id383457673" class="store-btn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.plexapp.mediacenter" class="store-btn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.99.14l13.01-7.52-2.9-2.9-11.1 10.28zM.5 1.34C.19 1.67 0 2.17 0 2.82v18.36c0 .65.19 1.15.5 1.48l.08.07 10.28-10.28v-.24L.58 1.27l-.08.07zM20.9 10.69l-2.76-1.6-3.1 3.1 3.1 3.1 2.78-1.61c.79-.46.79-1.2-.02-1.99zM4.17.24L17.18 7.76l-2.9 2.9L3.18.37c.35-.2.7-.2.99-.13z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- YACReader -->
+    <div class="app-card comics">
+      <div class="app-card-header">
+        <div class="app-card-icon">💥</div>
+        <div class="app-card-info">
+          <div class="app-card-name">YACReader</div>
+          <div class="app-card-purpose">Read comics & manga</div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/yacreader/id635717885" class="store-btn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <span class="store-btn" style="opacity:0.35; cursor:not-allowed; pointer-events:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.99.14l13.01-7.52-2.9-2.9-11.1 10.28zM.5 1.34C.19 1.67 0 2.17 0 2.82v18.36c0 .65.19 1.15.5 1.48l.08.07 10.28-10.28v-.24L.58 1.27l-.08.07zM20.9 10.69l-2.76-1.6-3.1 3.1 3.1 3.1 2.78-1.61c.79-.46.79-1.2-.02-1.99zM4.17.24L17.18 7.76l-2.9 2.9L3.18.37c.35-.2.7-.2.99-.13z"/></svg>
+          iOS Only
+        </span>
+      </div>
+    </div>
+
+    <!-- Plexamp -->
+    <div class="app-card music">
+      <div class="app-card-header">
+        <div class="app-card-icon">🎵</div>
+        <div class="app-card-info">
+          <div class="app-card-name">Plexamp</div>
+          <div class="app-card-purpose">Listen to your music library</div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/plexamp/id1378885081" class="store-btn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=tv.plex.labs.plexamp" class="store-btn" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.99.14l13.01-7.52-2.9-2.9-11.1 10.28zM.5 1.34C.19 1.67 0 2.17 0 2.82v18.36c0 .65.19 1.15.5 1.48l.08.07 10.28-10.28v-.24L.58 1.27l-.08.07zM20.9 10.69l-2.76-1.6-3.1 3.1 3.1 3.1 2.78-1.61c.79-.46.79-1.2-.02-1.99zM4.17.24L17.18 7.76l-2.9 2.9L3.18.37c.35-.2.7-.2.99-.13z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+  </div>
 
   <footer>
     potterflix.org · self-hosted with ❤️
